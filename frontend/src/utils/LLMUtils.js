@@ -154,62 +154,66 @@ const default_html_content = `
 `;
 
 export const generateHTMLSnippet = async (
-	api_key,
-	human_prompt,
-	current_html_content,
-	prompt_history
+    api_key,
+    human_prompt,
+    current_html_content,
+    prompt_history
 ) => {
-	const prompt = generate_prompt(
-		human_prompt,
-		current_html_content,
-		prompt_history
-	);
-	console.log("prompt generated: \n" + prompt);
+    const prompt = generate_prompt(
+        human_prompt,
+        current_html_content,
+        prompt_history
+    );
+    try {
+        console.log("prompt generated: \n" + prompt);
 
-	const genAI = new GoogleGenerativeAI(api_key);
-	const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-	const result = await model.generateContent(prompt);
+        const genAI = new GoogleGenerativeAI(api_key);
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const result = await model.generateContent(prompt);
 
-	const response = await result.response;
-	console.log("LLM Response: \n" + response.text());
-	const proccessed_response = process_response(response.text());
-	console.log("Processed Response: \n" + proccessed_response);
-	return proccessed_response;
+        const response = await result.response;
+        console.log("LLM Response: \n" + response.text());
+        const proccessed_response = process_response(response.text());
+        console.log("Processed Response: \n" + proccessed_response);
+        return proccessed_response;
+    } catch (error) {
+        return "Error: " + error.message;
+    }
 };
 
 const process_response = (response) => {
-	let processed_response = response
-		.replaceAll("```html", "")
-		.replaceAll("```", "");
-	return processed_response;
+    let processed_response = response
+        .replaceAll("```html", "")
+        .replaceAll("```", "");
+    return processed_response;
 };
 
 const generate_prompt = (
-	human_prompt,
-	current_html_content,
-	prompt_history
+    human_prompt,
+    current_html_content,
+    prompt_history
 ) => {
-	let prompt = few_shot_prompt.replace("$human_prompt", human_prompt);
-	if (
-		current_html_content.replace(/\s/g, "") !==
-		default_html_content.replace(/\s/g, "")
-	) {
-		prompt = prompt.replace(
-			"$current_html_content_prompt",
-			` The current version of snippet looks like this ${current_html_content}. \n Incorporate this into your generated code.`
-		);
-	} else {
-		prompt = prompt.replace("$current_html_content_prompt", "");
-	}
+    let prompt = few_shot_prompt.replace("$human_prompt", human_prompt);
+    if (
+        current_html_content.replace(/\s/g, "") !==
+        default_html_content.replace(/\s/g, "")
+    ) {
+        prompt = prompt.replace(
+            "$current_html_content_prompt",
+            ` The current version of snippet looks like this ${current_html_content}. \n Incorporate this into your generated code.`
+        );
+    } else {
+        prompt = prompt.replace("$current_html_content_prompt", "");
+    }
 
-	if (prompt_history) {
-		prompt = prompt.replace(
-			"$prompt_history",
-			`Here's some history of what the prompt of this request looks like: \n \n ${prompt_history}`
-		);
-	} else {
-		prompt = prompt.replace("$prompt_history", "");
-	}
+    // if (prompt_history) {
+    //     prompt = prompt.replace(
+    //         "$prompt_history",
+    //         `Here's some history of what the prompt of this request looks like: \n \n ${prompt_history}`
+    //     );
+    // } else {
+    //     prompt = prompt.replace("$prompt_history", "");
+    // }
 
-	return prompt;
+    return prompt;
 };
