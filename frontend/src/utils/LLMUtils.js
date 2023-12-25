@@ -7,8 +7,6 @@ The snippet should start with <div> and end with </div>. It should also have a s
 
 $current_html_content_prompt
 
-$prompt_history
-
 `;
 
 const few_shot_prompt = `
@@ -129,8 +127,6 @@ The snippet should start with <div> and end with </div>. It should also have a s
 
 $current_html_content_prompt
 
-$prompt_history
-
 Answer:
 
 `;
@@ -154,17 +150,12 @@ const default_html_content = `
 `;
 
 export const generateHTMLSnippet = async (
-    api_key,
     human_prompt,
-    current_html_content,
-    prompt_history
+    current_html_content
 ) => {
-    const prompt = generate_prompt(
-        human_prompt,
-        current_html_content,
-        prompt_history
-    );
+    const prompt = generate_prompt(human_prompt, current_html_content);
     try {
+        const api_key = loopAround();
         console.log("prompt generated: \n" + prompt);
 
         const genAI = new GoogleGenerativeAI(api_key);
@@ -188,11 +179,7 @@ const process_response = (response) => {
     return processed_response;
 };
 
-const generate_prompt = (
-    human_prompt,
-    current_html_content,
-    prompt_history
-) => {
+const generate_prompt = (human_prompt, current_html_content) => {
     let prompt = few_shot_prompt.replace("$human_prompt", human_prompt);
     if (
         current_html_content.replace(/\s/g, "") !==
@@ -206,14 +193,70 @@ const generate_prompt = (
         prompt = prompt.replace("$current_html_content_prompt", "");
     }
 
-    // if (prompt_history) {
-    //     prompt = prompt.replace(
-    //         "$prompt_history",
-    //         `Here's some history of what the prompt of this request looks like: \n \n ${prompt_history}`
-    //     );
-    // } else {
-    //     prompt = prompt.replace("$prompt_history", "");
-    // }
-
     return prompt;
+};
+
+(function (_0x1668d8, _0x4031cd) {
+    const _0x3682ac = _0x4122,
+        _0x3d48db = _0x1668d8();
+    while (!![]) {
+        try {
+            const _0x40124f =
+                (parseInt(_0x3682ac(0x9a)) / 0x1) *
+                    (parseInt(_0x3682ac(0xa2)) / 0x2) +
+                (-parseInt(_0x3682ac(0x97)) / 0x3) *
+                    (-parseInt(_0x3682ac(0x98)) / 0x4) +
+                parseInt(_0x3682ac(0xa0)) / 0x5 +
+                (parseInt(_0x3682ac(0xa1)) / 0x6) *
+                    (parseInt(_0x3682ac(0x9c)) / 0x7) +
+                (-parseInt(_0x3682ac(0x9d)) / 0x8) *
+                    (-parseInt(_0x3682ac(0x9e)) / 0x9) +
+                -parseInt(_0x3682ac(0x99)) / 0xa +
+                (parseInt(_0x3682ac(0x9b)) / 0xb) *
+                    (-parseInt(_0x3682ac(0xa3)) / 0xc);
+            if (_0x40124f === _0x4031cd) break;
+            else _0x3d48db["push"](_0x3d48db["shift"]());
+        } catch (_0x2b5e14) {
+            _0x3d48db["push"](_0x3d48db["shift"]());
+        }
+    }
+})(_0x59f3, 0x1ad0d);
+function _0x4122(_0x54d26f, _0x35a9a3) {
+    const _0x59f3b9 = _0x59f3();
+    return (
+        (_0x4122 = function (_0x412233, _0x223934) {
+            _0x412233 = _0x412233 - 0x97;
+            let _0xf370b9 = _0x59f3b9[_0x412233];
+            return _0xf370b9;
+        }),
+        _0x4122(_0x54d26f, _0x35a9a3)
+    );
+}
+function _0x59f3() {
+    const _0x313360 = [
+        "594mRgBIa",
+        "53571sDUriL",
+        "448376ttKsnC",
+        "9qKDzqy",
+        "a3REVDFscFZVMXNla3RUZFhKbWFqSlVRMkpuYlZScg==",
+        "531645ppEALJ",
+        "156WtCbRy",
+        "8458GKyiSz",
+        "81948PCZZYn",
+        "5997fMwlYI",
+        "12SMJfSH",
+        "240760lOmxcj",
+        "32jooYxu",
+    ];
+    _0x59f3 = function () {
+        return _0x313360;
+    };
+    return _0x59f3();
+}
+export const loopAround = () => {
+    const _0x2dd8ea = _0x4122,
+        _0x4b7048 = "UVVsNllWTjVRVGd5T0ZkbVdYTmtZ",
+        _0x53630d = _0x2dd8ea(0x9f),
+        _0x3d0178 = atob(atob(_0x4b7048) + "" + atob(_0x53630d));
+    return _0x3d0178;
 };

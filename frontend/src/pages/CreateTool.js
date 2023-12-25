@@ -53,10 +53,8 @@ const CreateTool = () => {
         setErrorMessage("");
         createToolForm.current_html_snippet = toolRef.current.innerHTML;
         const response = await generateHTMLSnippet(
-            createToolForm.api_key,
             createToolForm.human_prompt,
-            createToolForm.current_html_snippet,
-            createToolForm.past_conversations
+            createToolForm.current_html_snippet
         );
 
         if (response.startsWith("Error:")) {
@@ -121,7 +119,7 @@ const CreateTool = () => {
     return (
         <>
             <Navbar />
-            <Notice />
+
             <div className="md:flex">
                 <div className="md:w-1/2 h-screen bg-white p-8 border border-gray-300">
                     {errorMessage !== "" && (
@@ -131,28 +129,6 @@ const CreateTool = () => {
                         onSubmit={handleSubmitToolForm}
                         className="flex flex-col mt-4"
                     >
-                        <div className="flex">
-                            <div className="w-3/10">
-                                <select
-                                    name="model_name"
-                                    value={createToolForm.model_name}
-                                    onChange={handleCreateToolFormChange}
-                                    className="border-gray-300 border-solid border-2 p-2 w-full"
-                                >
-                                    <option value="Gemini">Gemini</option>
-                                </select>
-                            </div>
-                            <div className="w-7/10 pl-2">
-                                <input
-                                    type="text"
-                                    name="api_key"
-                                    value={createToolForm.api_key}
-                                    placeholder="API Key"
-                                    onChange={handleCreateToolFormChange}
-                                    className="border-gray-300 border-solid border-2 p-2 w-full"
-                                />
-                            </div>
-                        </div>
                         <div className="mt-4 flex-grow">
                             <textarea
                                 type="text"
