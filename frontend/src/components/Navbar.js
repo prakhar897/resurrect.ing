@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../supabase";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 	const [searchInput, setSearchInput] = useState("");
@@ -86,13 +87,15 @@ const Navbar = () => {
 	return (
 		<nav className="bg-blue-500 p-4">
 			<div className="container mx-auto flex justify-between items-center">
-				<div className="text-white text-2xl font-bold flex">
-					<img
-						src="/icon.svg"
-						alt="Your Brand Logo"
-						className="h-10 w-auto"
-					/>
-					<a href="/">Resurrect.ing </a>
+				<div className="text-white text-2xl font-bold flex items-center">
+					<Link to="/" className="flex items-center">
+						<img
+							src="/icon.svg"
+							alt="Your Brand Logo"
+							className="h-10 w-auto mr-2"
+						/>
+						<span>Resurrect.ing</span>
+					</Link>
 				</div>
 				<form action="#" method="GET" className="flex-grow ml-4 ">
 					<input

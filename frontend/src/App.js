@@ -4,6 +4,9 @@ import TrendingTools from "./pages/TrendingTools";
 import Home from "./pages/Home";
 import Tool from "./pages/Tool";
 import Vulnerabilities from "./pages/Vulnerabilities";
+import TOS from "./pages/TOS";
+import AllTools from "./pages/AllTools";
+import "./App.css";
 
 function App() {
 	return (
@@ -18,6 +21,8 @@ function App() {
 						path="/vulnerabilities"
 						element={<Vulnerabilities />}
 					/>
+					<Route path="/terms-of-service" element={<TOS />} />
+					<Route path="/all-tools" element={<AllTools />} />
 				</Routes>
 			</div>
 		</Router>

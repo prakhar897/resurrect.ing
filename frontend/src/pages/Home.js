@@ -1,5 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	return (
@@ -7,12 +9,19 @@ const Home = () => {
 			<Navbar />
 
 			<div className="container mx-auto px-4 py-8">
-				<a
-					className="text-3xl font-bold mb-4 bg-blue-500 text-white px-4 py-2 rounded-lg"
-					href="/create-tool"
+				<Link
+					className="text-3xl font-bold mb-4 bg-blue-500 text-white px-4 py-2 rounded-lg ml-2 mr-2"
+					to="/create-tool"
 				>
 					Create Tool
-				</a>
+				</Link>
+
+				<Link
+					className="text-3xl font-bold mb-4 bg-blue-500 text-white px-4 py-2 rounded-lg ml-2 mr-2"
+					to="/all-tools"
+				>
+					All Tools
+				</Link>
 
 				<p className="text-lg mb-4 mt-4">
 					An app to build small tools and host them without knowing
@@ -44,10 +53,6 @@ const Home = () => {
 					<h2 className="text-2xl font-bold mb-4">How it works:</h2>
 					<ol className="list-decimal ml-6">
 						<li className="text-lg mb-4">
-							Enter your OpenAI/Gemini API Key
-						</li>
-
-						<li className="text-lg mb-4">
 							Describe what you want to build.
 						</li>
 
@@ -62,6 +67,8 @@ const Home = () => {
 					</ol>
 				</div>
 			</div>
+
+			<Footer />
 		</>
 	);
 };

@@ -136,8 +136,6 @@ Write HTML snippet containing the title of the app, the description of what the 
 
 The snippet should start with <main> and end with </main>. It should also have a script tag to make the code functional. Return nothing else.
 
-$current_html_content_prompt
-
 Answer:
 `;
 
