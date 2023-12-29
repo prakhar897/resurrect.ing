@@ -23,8 +23,7 @@ const Home = () => {
                 </Link>
 
                 <p className="text-lg mb-4 mt-4">
-                    An app to build small tools and host them without knowing
-                    how to code.
+                    Generate a product with your half baked ideas in a minute.
                 </p>
 
                 <div className="mt-8">
@@ -39,11 +38,9 @@ const Home = () => {
 
                     <h6>Goal 2:</h6>
                     <p className="text-lg mb-4">
-                        Forget about prompting, a lot of people around me still
-                        struggle with googling. The online tooling sites often
-                        miss subtle features and searching is a tedious
-                        endeavor. So Instead of searching for tools, you can now
-                        create your own versions and save them for future use.
+                        I see a lot of people around me with half baked ideas.
+                        Hopefully, this will help them get a clearer sense of
+                        what they want.
                     </p>
                     <p className="text-lg mb-4"></p>
                 </div>

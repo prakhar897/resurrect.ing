@@ -152,7 +152,7 @@ const CreateTool = () => {
                                 value={createToolForm.human_prompt}
                                 placeholder="Build me a Calculator..."
                                 onChange={handleCreateToolFormChange}
-                                className="border-gray-300 border-solid border-2 p-2 w-3/4"
+                                className="border-gray-300 border-solid border-2 p-2 w-3/4 h-80"
                             />
                         </div>
                         <div className="mt-4 flex justify-between items-end">
